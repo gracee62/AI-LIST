@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Learning Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+header{
+padding:20px;
+background:#111827;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:1.8rem;
+font-weight:bold;
+color:#38bdf8;
+}
+
+.hero{
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.hero p{
+color:#cbd5e1;
+max-width:700px;
+margin:auto;
+}
+
+.search-box{
+margin-top:30px;
+}
+
+.search-box input{
+width:90%;
+max-width:600px;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:1rem;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.stat-card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.stat-card h2{
+color:#38bdf8;
+}
+
+.categories{
+padding:30px;
+text-align:center;
+}
+
+.categories button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:#1e293b;
+color:white;
+}
+
+.categories button:hover{
+background:#38bdf8;
+}
+
+.tools-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.tool-logo{
+width:48px;
+height:48px;
+object-fit:contain;
+border-radius:8px;
+background:white;
+padding:6px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+color:#94a3b8;
+margin-bottom:15px;
+}
+
+.visit-btn{
+display:inline-block;
+background:#38bdf8;
+padding:10px 15px;
+border-radius:10px;
+text-decoration:none;
+color:white;
+}
+
+footer{
+padding:40px;
+text-align:center;
+background:#111827;
+margin-top:50px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="logo">Student Learning Hub</div>
+</nav>
+</header>
+
+<section class="hero">
+<h1>100+ AI Tools & Learning Resources</h1>
+
+<p>
+Find the best AI tools, study websites,
+coding resources, research platforms,
+cloud storage, productivity apps,
+social media, e-commerce, news,
+browsers, AI learning platforms and more.
+</p>
+
+<div class="search-box">
+<input
+type="text"
+id="searchInput"
+placeholder="Search tools..."
+>
+</div>
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+<h2>100+</h2>
+<p>Tools</p>
+</div>
+
+<div class="stat-card">
+<h2>15+</h2>
+<p>Categories</p>
+</div>
+
+<div class="stat-card">
+<h2>100%</h2>
+<p>Free Access</p>
+</div>
+
+</section>
+
+<section class="categories">
+
+<button onclick="filterTools('All')">All</button>
+
+<button onclick="filterTools('AI')">AI</button>
+
+<button onclick="filterTools('Study')">Study</button>
+
+<button onclick="filterTools('Coding')">Coding</button>
+
+<button onclick="filterTools('Research')">Research</button>
+
+<button onclick="filterTools('Video')">Video</button>
+
+<button onclick="filterTools('Image')">Image</button>
+
+<button onclick="filterTools('Cloud')">Cloud</button>
+
+<button onclick="filterTools('Social')">Social</button>
+
+<button onclick="filterTools('Productivity')">
+Productivity
+</button>
+
+<button onclick="filterTools('E-commerce')">
+E-commerce
+</button>
+
+<button onclick="filterTools('News')">News</button>
+
+<button onclick="filterTools('Browser')">
+Browser
+</button>
+
+<button onclick="filterTools('AI Learning')">
+AI Learning
+</button>
+
+<button onclick="filterTools('Marketing')">
+Marketing
+</button>
+
+<button onclick="filterTools('Finance')">
+Finance
+</button>
+
+</section>
+
+<section
+class="tools-container"
+id="toolsContainer">
+</section>
+
+<footer>
+
+<h3>Student Learning Hub</h3>
+
+<p>
+Helping students discover the best
+learning resources on the internet.
+</p>
+
+</footer>
+
+<script>
+
+const tools = [
+  {
+    name: "ChatGPT",
+    category: "AI",
+    url: "https://chat.openai.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=openai.com"
+  },
+  {
+    name: "Claude",
+    category: "AI",
+    url: "https://claude.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=claude.ai"
+  },
+  {
+    name: "Gemini",
+    category: "AI",
+    url: "https://gemini.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=gemini.google.com"
+  },
+  {
+    name: "Perplexity",
+    category: "AI",
+    url: "https://www.perplexity.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=perplexity.ai"
+  },
+  {
+    name: "Copilot",
+    category: "AI",
+    url: "https://copilot.microsoft.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=microsoft.com"
+  },
+  {
+    name: "Poe",
+    category: "AI",
+    url: "https://poe.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=poe.com"
+  },
+  {
+    name: "Character.AI",
+    category: "AI",
+    url: "https://character.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=character.ai"
+  },
+  {
+    name: "You.com",
+    category: "AI",
+    url: "https://you.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=you.com"
+  },
+  {
+    name: "Khan Academy",
+    category: "Study",
+    url: "https://www.khanacademy.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=khanacademy.org"
+  },
+  {
+    name: "Coursera",
+    category: "Study",
+    url: "https://www.coursera.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=coursera.org"
+  },
+  {
+    name: "edX",
+    category: "Study",
+    url: "https://www.edx.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=edx.org"
+  },
+  {
+    name: "Udemy",
+    category: "Study",
+    url: "https://www.udemy.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=udemy.com"
+  },
+  {
+    name: "Quizlet",
+    category: "Study",
+    url: "https://quizlet.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=quizlet.com"
+  },
+  {
+    name: "Duolingo",
+    category: "Study",
+    url: "https://www.duolingo.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=duolingo.com"
+  },
+  {
+    name: "Brilliant",
+    category: "Study",
+    url: "https://brilliant.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=brilliant.org"
+  },
+  {
+    name: "Google Scholar",
+    category: "Research",
+    url: "https://scholar.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=scholar.google.com"
+  },
+  {
+    name: "Wikipedia",
+    category: "Research",
+    url: "https://www.wikipedia.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=wikipedia.org"
+  },
+  {
+    name: "ResearchGate",
+    category: "Research",
+    url: "https://www.researchgate.net/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=researchgate.net"
+  },
+  {
+    name: "Semantic Scholar",
+    category: "Research",
+    url: "https://www.semanticscholar.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=semanticscholar.org"
+  },
+  {
+    name: "JSTOR",
+    category: "Research",
+    url: "https://www.jstor.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=jstor.org"
+  },
+  {
+    name: "Zotero",
+    category: "Research",
+    url: "https://www.zotero.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=zotero.org"
+  },
+  {
+    name: "GitHub",
+    category: "Coding",
+    url: "https://github.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=github.com"
+  },
+  {
+    name: "Stack Overflow",
+    category: "Coding",
+    url: "https://stackoverflow.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=stackoverflow.com"
+  },
+  {
+    name: "CodePen",
+    category: "Coding",
+    url: "https://codepen.io/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=codepen.io"
+  },
+  {
+    name: "Replit",
+    category: "Coding",
+    url: "https://replit.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=replit.com"
+  },
+  {
+    name: "freeCodeCamp",
+    category: "Coding",
+    url: "https://www.freecodecamp.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=freecodecamp.org"
+  },
+  {
+    name: "W3Schools",
+    category: "Coding",
+    url: "https://www.w3schools.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=w3schools.com"
+  },
+  {
+    name: "MDN Web Docs",
+    category: "Coding",
+    url: "https://developer.mozilla.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=developer.mozilla.org"
+  },
+  {
+    name: "YouTube",
+    category: "Video",
+    url: "https://www.youtube.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=youtube.com"
+  },
+  {
+    name: "Vimeo",
+    category: "Video",
+    url: "https://vimeo.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=vimeo.com"
+  },
+  {
+    name: "TED",
+    category: "Video",
+    url: "https://www.ted.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=ted.com"
+  },
+  {
+    name: "YouTube Music",
+    category: "Video",
+    url: "https://music.youtube.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=music.youtube.com"
+  },
+  {
+    name: "Canva",
+    category: "Image",
+    url: "https://www.canva.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=canva.com"
+  },
+  {
+    name: "Pinterest",
+    category: "Image",
+    url: "https://www.pinterest.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=pinterest.com"
+  },
+  {
+    name: "Unsplash",
+    category: "Image",
+    url: "https://unsplash.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=unsplash.com"
+  },
+  {
+    name: "Pexels",
+    category: "Image",
+    url: "https://www.pexels.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=pexels.com"
+  },
+  {
+    name: "Pixabay",
+    category: "Image",
+    url: "https://pixabay.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=pixabay.com"
+  },
+  {
+    name: "Figma",
+    category: "Image",
+    url: "https://www.figma.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=figma.com"
+  },
+  {
+    name: "Google Drive",
+    category: "Cloud",
+    url: "https://drive.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=drive.google.com"
+  },
+  {
+    name: "Dropbox",
+    category: "Cloud",
+    url: "https://www.dropbox.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=dropbox.com"
+  },
+  {
+    name: "OneDrive",
+    category: "Cloud",
+    url: "https://onedrive.live.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=onedrive.live.com"
+  },
+  {
+    name: "iCloud",
+    category: "Cloud",
+    url: "https://www.icloud.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=icloud.com"
+  },
+  {
+    name: "Mega",
+    category: "Cloud",
+    url: "https://mega.io/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=mega.io"
+  },
+  {
+    name: "Notion",
+    category: "Productivity",
+    url: "https://www.notion.so/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=notion.so"
+  },
+  {
+    name: "Google Docs",
+    category: "Productivity",
+    url: "https://docs.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=docs.google.com"
+  },
+  {
+    name: "Trello",
+    category: "Productivity",
+    url: "https://trello.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=trello.com"
+  },
+  {
+    name: "Todoist",
+    category: "Productivity",
+    url: "https://todoist.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=todoist.com"
+  },
+  {
+    name: "Grammarly",
+    category: "Productivity",
+    url: "https://www.grammarly.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=grammarly.com"
+  },
+  {
+    name: "Google Calendar",
+    category: "Productivity",
+    url: "https://calendar.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=calendar.google.com"
+  },
+  {
+    name: "Facebook",
+    category: "Social",
+    url: "https://www.facebook.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=facebook.com"
+  },
+  {
+    name: "Instagram",
+    category: "Social",
+    url: "https://www.instagram.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=instagram.com"
+  },
+  {
+    name: "X",
+    category: "Social",
+    url: "https://x.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=x.com"
+  },
+  {
+    name: "LinkedIn",
+    category: "Social",
+    url: "https://www.linkedin.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=linkedin.com"
+  },
+  {
+    name: "Reddit",
+    category: "Social",
+    url: "https://www.reddit.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=reddit.com"
+  },
+  {
+    name: "Discord",
+    category: "Social",
+    url: "https://discord.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=discord.com"
+  },
+  {
+    name: "WhatsApp",
+    category: "Social",
+    url: "https://www.whatsapp.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=whatsapp.com"
+  },
+  {
+    name: "Telegram",
+    category: "Social",
+    url: "https://telegram.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=telegram.org"
+  },
+  {
+    name: "Quora",
+    category: "Social",
+    url: "https://www.quora.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=quora.com"
+  },
+  {
+    name: "Medium",
+    category: "Social",
+    url: "https://medium.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=medium.com"
+  },
+  {
+    name: "DeepL",
+    category: "Productivity",
+    url: "https://www.deepl.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=deepl.com"
+  },
+  {
+    name: "Amazon",
+    category: "E-commerce",
+    url: "https://www.amazon.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=amazon.com"
+  },
+  {
+    name: "eBay",
+    category: "E-commerce",
+    url: "https://www.ebay.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=ebay.com"
+  },
+  {
+    name: "Etsy",
+    category: "E-commerce",
+    url: "https://www.etsy.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=etsy.com"
+  },
+  {
+    name: "Shopify",
+    category: "E-commerce",
+    url: "https://www.shopify.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=shopify.com"
+  },
+  {
+    name: "AliExpress",
+    category: "E-commerce",
+    url: "https://www.aliexpress.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=aliexpress.com"
+  },
+  {
+    name: "Walmart",
+    category: "E-commerce",
+    url: "https://www.walmart.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=walmart.com"
+  },
+  {
+    name: "Daraz",
+    category: "E-commerce",
+    url: "https://www.daraz.com.np/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=daraz.com.np"
+  },
+  {
+    name: "BBC News",
+    category: "News",
+    url: "https://www.bbc.com/news",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=bbc.com"
+  },
+  {
+    name: "CNN",
+    category: "News",
+    url: "https://www.cnn.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=cnn.com"
+  },
+  {
+    name: "The New York Times",
+    category: "News",
+    url: "https://www.nytimes.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=nytimes.com"
+  },
+  {
+    name: "Reuters",
+    category: "News",
+    url: "https://www.reuters.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=reuters.com"
+  },
+  {
+    name: "The Guardian",
+    category: "News",
+    url: "https://www.theguardian.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=theguardian.com"
+  },
+  {
+    name: "Al Jazeera",
+    category: "News",
+    url: "https://www.aljazeera.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=aljazeera.com"
+  },
+  {
+    name: "TechCrunch",
+    category: "News",
+    url: "https://techcrunch.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=techcrunch.com"
+  },
+  {
+    name: "Google Chrome",
+    category: "Browser",
+    url: "https://www.google.com/chrome/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=google.com"
+  },
+  {
+    name: "Mozilla Firefox",
+    category: "Browser",
+    url: "https://www.mozilla.org/firefox/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=mozilla.org"
+  },
+  {
+    name: "Microsoft Edge",
+    category: "Browser",
+    url: "https://www.microsoft.com/edge",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=microsoft.com"
+  },
+  {
+    name: "Brave",
+    category: "Browser",
+    url: "https://brave.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=brave.com"
+  },
+  {
+    name: "Opera",
+    category: "Browser",
+    url: "https://www.opera.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=opera.com"
+  },
+  {
+    name: "Vivaldi",
+    category: "Browser",
+    url: "https://vivaldi.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=vivaldi.com"
+  },
+  {
+    name: "Safari",
+    category: "Browser",
+    url: "https://www.apple.com/safari/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=apple.com"
+  },
+  {
+    name: "Google AI Studio",
+    category: "AI Learning",
+    url: "https://aistudio.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=aistudio.google.com"
+  },
+  {
+    name: "OpenAI Platform",
+    category: "AI Learning",
+    url: "https://platform.openai.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=openai.com"
+  },
+  {
+    name: "Hugging Face",
+    category: "AI Learning",
+    url: "https://huggingface.co/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=huggingface.co"
+  },
+  {
+    name: "Kaggle",
+    category: "AI Learning",
+    url: "https://www.kaggle.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=kaggle.com"
+  },
+  {
+    name: "Fast.ai",
+    category: "AI Learning",
+    url: "https://www.fast.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=fast.ai"
+  },
+  {
+    name: "DeepLearning.AI",
+    category: "AI Learning",
+    url: "https://www.deeplearning.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=deeplearning.ai"
+  },
+  {
+    name: "Elements of AI",
+    category: "AI Learning",
+    url: "https://www.elementsofai.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=elementsofai.com"
+  },
+  {
+    name: "Google Colab",
+    category: "AI Learning",
+    url: "https://colab.research.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=colab.research.google.com"
+  },
+  {
+    name: "LeetCode",
+    category: "Coding",
+    url: "https://leetcode.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=leetcode.com"
+  },
+  {
+    name: "HackerRank",
+    category: "Coding",
+    url: "https://www.hackerrank.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=hackerrank.com"
+  },
+  {
+    name: "Codewars",
+    category: "Coding",
+    url: "https://www.codewars.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=codewars.com"
+  },
+  {
+    name: "GeeksforGeeks",
+    category: "Coding",
+    url: "https://www.geeksforgeeks.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=geeksforgeeks.org"
+  },
+  {
+    name: "Codecademy",
+    category: "Coding",
+    url: "https://www.codecademy.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=codecademy.com"
+  },
+  {
+    name: "Programiz",
+    category: "Coding",
+    url: "https://www.programiz.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=programiz.com"
+  },
+  {
+    name: "GitLab",
+    category: "Coding",
+    url: "https://gitlab.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=gitlab.com"
+  },
+  {
+    name: "Bitbucket",
+    category: "Coding",
+    url: "https://bitbucket.org/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=bitbucket.org"
+  },
+  {
+    name: "Meta AI",
+    category: "AI",
+    url: "https://www.meta.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=meta.ai"
+  },
+  {
+    name: "Grok",
+    category: "AI",
+    url: "https://grok.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=grok.com"
+  },
+  {
+    name: "Mistral AI",
+    category: "AI",
+    url: "https://chat.mistral.ai/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=mistral.ai"
+  },
+  {
+    name: "DeepSeek",
+    category: "AI",
+    url: "https://chat.deepseek.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=deepseek.com"
+  },
+  {
+    name: "Runway",
+    category: "AI",
+    url: "https://runwayml.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=runwayml.com"
+  },
+  {
+    name: "ElevenLabs",
+    category: "AI",
+    url: "https://elevenlabs.io/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=elevenlabs.io"
+  },
+  {
+    name: "Buffer",
+    category: "Marketing",
+    url: "https://buffer.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=buffer.com"
+  },
+  {
+    name: "Hootsuite",
+    category: "Marketing",
+    url: "https://www.hootsuite.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=hootsuite.com"
+  },
+  {
+    name: "Mailchimp",
+    category: "Marketing",
+    url: "https://mailchimp.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=mailchimp.com"
+  },
+  {
+    name: "Canva Magic Studio",
+    category: "Marketing",
+    url: "https://www.canva.com/magic/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=canva.com"
+  },
+  {
+    name: "Google Trends",
+    category: "Marketing",
+    url: "https://trends.google.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=trends.google.com"
+  },
+  {
+    name: "Yahoo Finance",
+    category: "Finance",
+    url: "https://finance.yahoo.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=finance.yahoo.com"
+  },
+  {
+    name: "TradingView",
+    category: "Finance",
+    url: "https://www.tradingview.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=tradingview.com"
+  },
+  {
+    name: "Investopedia",
+    category: "Finance",
+    url: "https://www.investopedia.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=investopedia.com"
+  },
+  {
+    name: "CoinMarketCap",
+    category: "Finance",
+    url: "https://coinmarketcap.com/",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=coinmarketcap.com"
+  }
+];
+
+function renderTools(data){
+
+const container =
+document.getElementById("toolsContainer");
+
+container.innerHTML = "";
+
+data.forEach(tool=>{
+
+container.innerHTML += `
+<div class="card">
+
+<img
+src="${tool.logo}"
+alt="${tool.name} logo"
+class="tool-logo"
+>
+
+<h3>${tool.name}</h3>
+
+<p>${tool.category}</p>
+
+<a
+href="${tool.url}"
+target="_blank"
+class="visit-btn">
+
+Visit
+
+</a>
+
+</div>
+`;
+
+});
+
+}
+
+function filterTools(category){
+
+if(category==="All"){
+renderTools(tools);
+return;
+}
+
+const filtered =
+tools.filter(
+tool=>tool.category===category
+);
+
+renderTools(filtered);
+
+}
+
+document
+.getElementById("searchInput")
+.addEventListener("keyup",function(){
+
+const value =
+this.value.toLowerCase();
+
+const filtered =
+tools.filter(tool=>
+
+tool.name
+.toLowerCase()
+.includes(value)
+
+);
+
+renderTools(filtered);
+
+});
+
+renderTools(tools);
+
+</script>
+
+</body>
+</html>
